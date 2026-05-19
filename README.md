@@ -1,16 +1,34 @@
-<<<<<<< HEAD
 # FastAPI
 
 Pythonの標準である型ヒント に基づいてPython3.6移行でAPIを構築するためのモダンで高速（高パフォーマンス）なWebフレームワーク
 
+## 目次
+1. [公式サイト](#01)
+1. [前提条件](#02)
+1. [試して動かす](#03)
+1. [APIドキュメント](#04)
+1. [パスパラメータ](#05)
+1. [クエリパラメータ](#06)
+1. [オプションパラメータ（必須でない）](#07)
+1. [リクエストボディ](#08)
+1. [作成したリクエストボディのアイテム情報をPythonで実行してみる](#09)
+1. [リクエストボディを複雑な入れ子構造にしてみる](#10)
+1. [バリデーション](#11)
+
+<a id="01"></a>
+
 ## 公式サイト
 [FastAPI](https://fastapi.tiangolo.com/ja/)
+
+<a id="02"></a>
 
 ### 前提条件
 ライブラリをインストールする
 ```
 pip install "fastapi[standard]"
 ```
+
+<a id="03"></a>
 
 ### 試して動かす
 1. サンプルを用意する
@@ -70,11 +88,15 @@ pip install "fastapi[standard]"
 
         ![Image](imgs/hello_world.png)
 
+<a id="04"></a>
+
 ### APIドキュメント
 FastAPIはAPIのドキュメントを自動生成する
 FastAPIのサーバーを起動後、`http://127.0.0.1:8000/docs`へアクセスするとドキュメントが作成されている
 
 ![image](imgs/api_document.png)
+
+<a id="05"></a>
 
 ### パスパラメータ
 URLにパスパラメータを渡すことができる
@@ -96,6 +118,8 @@ async def read_item(item_id: int):
 FastAPIのサーバーを起動後、`http://127.0.0.1:8000/items/10`へアクセスする
 
 ![images](imgs/item_10.png)
+
+<a id="06"></a>
 
 ### クエリパラメータ
 URLの?以降に付与されるパラメータでキーと値のパラメータを渡すことができる
@@ -120,6 +144,8 @@ async def country_info(country_name: str, country_id: int):
 FastAPIのサーバーを起動後、`http://127.0.0.1:8000/countries?country_name=japan&country_id=1`へアクセスする
 
 ![images](imgs/contry_japan.png)
+
+<a id="07"></a>
 
 ### オプションパラメータ（必須でない）
 
@@ -147,6 +173,8 @@ async def contry(country_name:Optional[str] = None, country_id:Optional[int] = N
 FastAPIのサーバーを起動後、`http://127.0.0.1:8000/countries/`へアクセスすると、エラーとならず、nullとして表示される
 
 ![images](imgs/contry_optional.png)
+
+<a id="08"></a>
 
 ### リクエストボディ
 いままではHTTPSメソッドの`GET`を使用していたが、`POST`を使用してリクエスト情報（JSON形式のデータ）を送信する
@@ -186,6 +214,8 @@ FastAPIのサーバーを起動後、`http://127.0.0.1:8000/docs/`へアクセ�
 
 ![images](imgs/post_response.png)
 
+<a id="09"></a>
+
 ### 作成したリクエストボディのアイテム情報をPythonで実行してみる
 
 test-method.py
@@ -217,6 +247,8 @@ python test-method.py
 ```
 {'name': 'White T-shirt', 'description': 'This is a White T-shirt', 'price': 5980, 'tax': 1.1}
 ```
+
+<a id="10"></a>
 
 ### リクエストボディを複雑な入れ子構造にしてみる
 
@@ -276,6 +308,8 @@ async def read_item(data: Data):
 FastAPIのサーバーを起動後、`http://127.0.0.1:8000/docs/`へアクセスし`Try it out`から`Request Body`の`Edit Value`に複雑なJson形式データを貼り付けて`Executeボタン`を実行する
 
 ![images](imgs/post_test_response.png)
+
+<a id="11"></a>
 
 ### バリデーション
 
